@@ -117,6 +117,17 @@ void get_sensor()
 void my_homekit_loop() {  
   arduino_homekit_loop();
   const uint32_t t = millis();
+  if(GPIO_INPUT_GET(GPIO_ID_PIN(12)) == 0x01)
+ {
+    //ESP.reset();
+    delay(3000);
+    if(GPIO_INPUT_GET(GPIO_ID_PIN(12)) == 0x01)
+    { 
+      WiFi.disconnect();
+      delay(500);    
+      wifi_connect(); // in wifi_info.h
+    }    
+  }
   if (t > next_heap_millis) {
     // show heap info every 5 seconds
     next_heap_millis = t + 5 * 1000;
