@@ -119,10 +119,10 @@ void my_homekit_loop() {
   const uint32_t t = millis();
   if(GPIO_INPUT_GET(GPIO_ID_PIN(12)) == 0x01)
  {
-    //ESP.reset();
     delay(3000);
     if(GPIO_INPUT_GET(GPIO_ID_PIN(12)) == 0x01)
-    { 
+    {homekit_server_reset();
+       delay(500);    
       WiFi.disconnect();
       delay(500);    
       wifi_connect(); // in wifi_info.h
